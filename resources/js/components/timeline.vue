@@ -76,7 +76,7 @@
             <span class="icon">
               <img src="assets/img/cases.svg">
             </span>
-                <h6 class="black-40 ttu tl">Total Cases</h6>
+                <h6 class="black-40 ttu tl">Total Cases To Date</h6>
                 <h3 class="black tl" data-plugin="counterup"><span v-if="!cumCasesByPublishDate"><i class="fa fa-spinner fa-pulse"></i></span>{{ cumCasesByPublishDate }}</h3>
             </div>
         </div>
@@ -85,7 +85,7 @@
             <span class="icon">
               <img src="assets/img/deaths.svg">
             </span>
-                <h6 class="black-40 ttu tl">Total Deaths</h6>
+                <h6 class="black-40 ttu tl">Total Deaths To Date</h6>
                 <h3 class="black tl" data-plugin="counterup"><span v-if="!cumDeathsByDeathDate"><i class="fa fa-spinner fa-pulse"></i></span>{{ cumDeathsByDeathDate }}</h3>
             </div>
         </div>
@@ -98,7 +98,7 @@
                 <h3 class="black tl" data-plugin="counterup"><span v-if="!newCasesByPublishDate"><i class="fa fa-spinner fa-pulse"></i></span>{{ newCasesByPublishDate }}</h3>
                 <div class="sub-info pt3 pb4" v-if="percentChange.length">
                     <span v-bind:class="'badge mr-1 badge-' + percentType ">{{ percentChange }}</span>
-                    <span class="text-muted black-40">from yesterday</span>
+                    <span class="text-muted black-40">from yesterday ({{ stats[1].newCasesByPublishDate }})</span>
                 </div>
             </div>
         </div>
@@ -113,7 +113,6 @@ export default {
             cumCasesByPublishDate: '',
             cumDeathsByDeathDate: '',
             newCasesByPublishDate: '',
-            newDeathsByDeathDate: '',
             latestDate: '',
             percentChange: '',
             percentType: '',
@@ -121,9 +120,6 @@ export default {
         }
     },
     mounted() {
-
-        console.log(this.percentDiff(41, 52));
-
         $(".theme-switch").on("click", () => {
             $("body").toggleClass("light-theme");
         });
@@ -133,10 +129,8 @@ export default {
         // Optionally the request above could also be done as
         axios.get('/api/stats')
             .then(function (response) {
-
                 app.response = response.data
                 app.newCasesByPublishDate = response.data['stats'][0].newCasesByPublishDate;
-                app.newDeathsByDeathDate = response.data['stats'][0].newDeathsByDeathDate;
                 app.latestDate = response.data['stats'][0].date;
                 app.cumCasesByPublishDate = response.data.cumCasesByPublishDate;
                 app.cumDeathsByDeathDate = response.data.cumDeathsByDeathDate;
@@ -149,7 +143,6 @@ export default {
             .then(function () {
                 // always executed
             });
-
     },
     methods: {
         percentDiff: function (a, b){

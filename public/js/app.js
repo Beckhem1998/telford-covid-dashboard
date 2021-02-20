@@ -1959,7 +1959,6 @@ __webpack_require__.r(__webpack_exports__);
       cumCasesByPublishDate: '',
       cumDeathsByDeathDate: '',
       newCasesByPublishDate: '',
-      newDeathsByDeathDate: '',
       latestDate: '',
       percentChange: '',
       percentType: '',
@@ -1967,7 +1966,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log(this.percentDiff(41, 52));
     $(".theme-switch").on("click", function () {
       $("body").toggleClass("light-theme");
     });
@@ -1976,7 +1974,6 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('/api/stats').then(function (response) {
       app.response = response.data;
       app.newCasesByPublishDate = response.data['stats'][0].newCasesByPublishDate;
-      app.newDeathsByDeathDate = response.data['stats'][0].newDeathsByDeathDate;
       app.latestDate = response.data['stats'][0].date;
       app.cumCasesByPublishDate = response.data.cumCasesByPublishDate;
       app.cumDeathsByDeathDate = response.data.cumDeathsByDeathDate;
@@ -75569,7 +75566,9 @@ var render = function() {
       _c("div", { staticClass: "card-box tilebox-one" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c("h6", { staticClass: "black-40 ttu tl" }, [_vm._v("Total Cases")]),
+        _c("h6", { staticClass: "black-40 ttu tl" }, [
+          _vm._v("Total Cases To Date")
+        ]),
         _vm._v(" "),
         _c(
           "h3",
@@ -75588,7 +75587,9 @@ var render = function() {
       _c("div", { staticClass: "card-box tilebox-one" }, [
         _vm._m(1),
         _vm._v(" "),
-        _c("h6", { staticClass: "black-40 ttu tl" }, [_vm._v("Total Deaths")]),
+        _c("h6", { staticClass: "black-40 ttu tl" }, [
+          _vm._v("Total Deaths To Date")
+        ]),
         _vm._v(" "),
         _c(
           "h3",
@@ -75629,7 +75630,11 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("span", { staticClass: "text-muted black-40" }, [
-                _vm._v("from yesterday")
+                _vm._v(
+                  "from yesterday (" +
+                    _vm._s(_vm.stats[1].newCasesByPublishDate) +
+                    ")"
+                )
               ])
             ])
           : _vm._e()
