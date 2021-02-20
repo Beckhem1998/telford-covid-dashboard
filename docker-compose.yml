@@ -1,0 +1,65 @@
+version: '3.5'
+services:
+
+  # The Application
+  tf-covid-app:
+    container_name: tf-covid-app
+    image: tf-covid-app
+    build:
+      context: ./
+      dockerfile: docker/application/Dockerfile
+    working_dir: /var/www
+    ports:
+      - 9056:9000
+    networks:
+      - tf-covid
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - tf-covid-database
+    environment:
+      - "DB_DATABASE=covid"
+      - "DB_USERNAME=covid"
+      - "DB_HOST=tf-covid-database"
+      - "DB_PASSWORD=Yh3XsUZJTKpHu763"
+      - "APP_URL=http://localhost:8056"
+
+  # The Web Server
+  tf-covid-web:
+    container_name: tf-covid-web
+    image: tf-covid-web
+    build:
+      context: ./
+      dockerfile: docker/web/Dockerfile
+    working_dir: /var/www
+    depends_on:
+      - tf-covid-app
+    networks:
+      - tf-covid
+    volumes:
+      - ./public:/var/www/public
+    ports:
+      - 8056:80
+
+  # The Database
+  tf-covid-database:
+    container_name: tf-covid-database
+    networks:
+      - tf-covid
+    image: mysql:5.7
+    volumes:
+      - tf-covid-db:/var/lib/mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=Yh3XsUZJTKpHu763"
+      - "MYSQL_USER=covid"
+      - "MYSQL_PASSWORD=Yh3XsUZJTKpHu763"
+      - "MYSQL_DATABASE=covid"
+    ports:
+      - 33056:3306
+
+volumes:
+  tf-covid-db:
+
+networks:
+  tf-covid:
+    name: tf-covid
