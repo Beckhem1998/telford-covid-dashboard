@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8bcf3f5-101c-4510-8fcf-806daa3cbb4a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/calibre/CalibreWeb-Medium.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/calibre/CalibreWeb-Regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/calibre/CalibreWeb-Semibold.woff" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +196,7 @@
       <workItem from="1612286359161" duration="3939000" />
       <workItem from="1612302505897" duration="50000" />
       <workItem from="1613834914935" duration="5709000" />
-      <workItem from="1613855668678" duration="1249000" />
+      <workItem from="1613855668678" duration="2645000" />
     </task>
     <servers />
   </component>
