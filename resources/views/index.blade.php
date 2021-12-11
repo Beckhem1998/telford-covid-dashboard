@@ -12,7 +12,7 @@
             </div>
         </nav>
         <article class="cf">
-            <header class="header mw5 mw7-ns tl pa3 pb0" style="height:100px;">
+            <header class="header mw5 mw7-ns tl pa3 pb0">
                 <div class="fl w-50-ns pa2">
                     <h1 class="mt0">🦠 Telford COVID-19 Tracker</h1>
                     <p class="lh-copy measure black-60">
