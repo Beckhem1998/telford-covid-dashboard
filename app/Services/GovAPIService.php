@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Exceptions\EmptyResponse;
 use App\Repository\GovAPI\GovAPIRepository;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class GovAPIService
@@ -52,14 +53,20 @@ class GovAPIService
 
         $statData = [];
 
-        // Gov API is crap so you cant limit how many results it sends back, we only car about last 2 days
+        Log::warning($response);
+
+        // Gov API is crap so you cant limit how many results it sends back, we only care about last 2 days
         $statData['stats'] = array_slice(json_decode($response)->data, 0, 2, true);
         $statData['cumCasesByPublishDate'] = number_format(
             $statData['stats'][0]->cumCasesByPublishDate ?? $statData['stats'][1]->cumCasesByPublishDate,
             0
         );
         $statData['cumDeathsByDeathDate'] = number_format(
-            $statData['stats'][0]->cumDeathsByDeathDate ?? $statData['stats'][1]->cumDeathsByDeathDate,
+            $statData['stats'][0]->cumDeaths28DaysByPublishDate ?? $statData['stats'][1]->cumDeaths28DaysByPublishDate,
+            0
+        );
+        $statData['cumPeopleVaccinatedCompleteByPublishDate'] = number_format(
+            $statData['stats'][0]->cumPeopleVaccinatedCompleteByPublishDate ?? $statData['stats'][1]->cumPeopleVaccinatedCompleteByPublishDate,
             0
         );
 
@@ -88,6 +95,8 @@ class GovAPIService
                     'cumCasesByPublishDate' => 'cumCasesByPublishDate',
                     'newDeathsByDeathDate' => 'newDeathsByDeathDate',
                     'cumDeathsByDeathDate' => 'cumDeathsByDeathDate',
+                    'cumDeaths28DaysByPublishDate' => 'cumDeaths28DaysByPublishDate',
+                    'cumPeopleVaccinatedCompleteByPublishDate' => 'cumPeopleVaccinatedCompleteByPublishDate'
                 ]
             )
         );

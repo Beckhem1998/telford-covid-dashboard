@@ -92,13 +92,23 @@
         <div class="fl w-100 tc stat-card">
             <div class="card-box tilebox-one">
             <span class="icon">
+              <img src="assets/img/vaccine.svg">
+            </span>
+                <h6 class="black-40 ttu tl">Total Vaccinations To Date</h6>
+                <h3 class="black tl" data-plugin="counterup"><span v-if="!cumPeopleVaccinatedCompleteByPublishDate"><i class="fa fa-spinner fa-pulse"></i></span>{{ cumPeopleVaccinatedCompleteByPublishDate }}</h3>
+            </div>
+        </div>
+
+        <div class="fl w-100 tc stat-card">
+            <div class="card-box tilebox-one">
+            <span class="icon">
               <img src="assets/img/active_cases.svg">
             </span>
                 <h6 class="black-40 ttu tl">New Cases For {{ latestDate }}</h6>
                 <h3 class="black tl" data-plugin="counterup"><span v-if="!newCasesByPublishDate"><i class="fa fa-spinner fa-pulse"></i></span>{{ newCasesByPublishDate }}</h3>
                 <div class="sub-info pt3 pb4" v-if="percentChange.length">
                     <span v-bind:class="'badge mr-1 badge-' + percentType ">{{ percentChange }}</span>
-                    <span class="text-muted black-40">from yesterday ({{ stats[1].newCasesByPublishDate }})</span>
+                    <span class="text-muted black-40">from {{ stats[1].date }} ({{ stats[1].newCasesByPublishDate }})</span>
                 </div>
             </div>
         </div>
@@ -113,6 +123,7 @@ export default {
             cumCasesByPublishDate: '',
             cumDeathsByDeathDate: '',
             newCasesByPublishDate: '',
+            cumPeopleVaccinatedCompleteByPublishDate: '',
             latestDate: '',
             percentChange: '',
             percentType: '',
@@ -134,6 +145,7 @@ export default {
                 app.latestDate = response.data['stats'][0].date;
                 app.cumCasesByPublishDate = response.data.cumCasesByPublishDate;
                 app.cumDeathsByDeathDate = response.data.cumDeathsByDeathDate;
+                app.cumPeopleVaccinatedCompleteByPublishDate = response.data.cumPeopleVaccinatedCompleteByPublishDate;
                 app.stats = response.data['stats'];
                 app.percentChange = app.percentDiff(response.data['stats'][0].newCasesByPublishDate, response.data['stats'][1].newCasesByPublishDate)
             })
