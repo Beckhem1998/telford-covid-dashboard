@@ -3,7 +3,7 @@
 @section('content')
 <div class="h-100 midnight-blue pa3 ph0-l pv6-l">
     <div class="center mw7">
-        <nav class="db dt-l w-100 border-box pa3 ">
+        <nav class="db dt-l w-100 border-box pa3 pb0">
             <div class="switch-wrapper">
                 <img class="theme-icon" src="assets/img/moon.svg">
                 <div class="theme-switch">
@@ -12,7 +12,7 @@
             </div>
         </nav>
         <article class="cf">
-            <header class="header mw5 mw7-ns tl pa3">
+            <header class="header mw5 mw7-ns tl pa3 pb0" style="height:100px;">
                 <div class="fl w-50-ns pa2">
                     <h1 class="mt0">🦠 Telford COVID-19 Tracker</h1>
                     <p class="lh-copy measure black-60">
