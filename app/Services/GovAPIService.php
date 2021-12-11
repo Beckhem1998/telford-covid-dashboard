@@ -6,6 +6,7 @@ use App\Exceptions\EmptyResponse;
 use App\Repository\GovAPI\GovAPIRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 /**
  * Class GovAPIService
@@ -69,6 +70,7 @@ class GovAPIService
             $statData['stats'][0]->cumPeopleVaccinatedCompleteByPublishDate ?? $statData['stats'][1]->cumPeopleVaccinatedCompleteByPublishDate,
             0
         );
+        $statData['percentVaccinated'] = ceil((Str::replaceFirst(',', '', $statData['cumPeopleVaccinatedCompleteByPublishDate']) / 179900 ) * 100);
 
         foreach ($statData['stats'] as $key => $value) {
             $statData['stats'][$key]->date = Carbon::parse($value->date)->format('jS F Y');

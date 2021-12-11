@@ -1962,6 +1962,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Timeline",
   data: function data() {
@@ -1971,6 +1974,7 @@ __webpack_require__.r(__webpack_exports__);
       newCasesByPublishDate: '',
       cumPeopleVaccinatedCompleteByPublishDate: '',
       latestDate: '',
+      percentVaccinated: '',
       percentChange: '',
       percentType: '',
       stats: {}
@@ -1988,6 +1992,7 @@ __webpack_require__.r(__webpack_exports__);
       app.latestDate = response.data['stats'][0].date;
       app.cumCasesByPublishDate = response.data.cumCasesByPublishDate;
       app.cumDeathsByDeathDate = response.data.cumDeathsByDeathDate;
+      app.percentVaccinated = response.data.percentVaccinated;
       app.cumPeopleVaccinatedCompleteByPublishDate = response.data.cumPeopleVaccinatedCompleteByPublishDate;
       app.stats = response.data['stats'];
       app.percentChange = app.percentDiff(response.data['stats'][0].newCasesByPublishDate, response.data['stats'][1].newCasesByPublishDate);
@@ -75633,7 +75638,18 @@ var render = function() {
               : _vm._e(),
             _vm._v(_vm._s(_vm.cumPeopleVaccinatedCompleteByPublishDate))
           ]
-        )
+        ),
+        _vm._v(" "),
+        _vm.percentChange.length
+          ? _c("div", { staticClass: "sub-info pt2 pb3" }, [
+              _c("span", { staticClass: "text-muted black-40" }, [
+                _vm._v(
+                  _vm._s(_vm.percentVaccinated) +
+                    "% of the population in Telford have been fully vaccinated"
+                )
+              ])
+            ])
+          : _vm._e()
       ])
     ]),
     _vm._v(" "),
