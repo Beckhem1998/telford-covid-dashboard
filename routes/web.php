@@ -13,4 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/covid-19', 'App\Http\Controllers\HomeController@index');
+Route::get('/', function (){
+    return view('homepage');
+});
+
+Route::get('/covid-19', 'App\Http\Controllers\HomeController@index')->name('covid-19');
