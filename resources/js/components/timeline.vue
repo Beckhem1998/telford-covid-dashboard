@@ -96,9 +96,9 @@
             </span>
                 <h6 class="black-40 ttu tl">Total Vaccinations To Date</h6>
                 <h3 class="black tl" data-plugin="counterup"><span v-if="!cumPeopleVaccinatedCompleteByPublishDate"><i class="fa fa-spinner fa-pulse"></i></span>{{ cumPeopleVaccinatedCompleteByPublishDate }}</h3>
-                <div class="sub-info pt2 pb4" v-if="percentChange.length">
-                    <span class="text-muted black-40">{{ percentVaccinated }}% of the population in Telford have been fully vaccinated</span>
-                </div>
+<!--                <div class="sub-info pt2 pb4" v-if="percentChange.length">-->
+<!--                    <span class="text-muted black-40">{{ percentVaccinated }}% of the population in Telford have been fully vaccinated</span>-->
+<!--                </div>-->
             </div>
         </div>
 
@@ -128,7 +128,7 @@ export default {
             newCasesByPublishDate: '',
             cumPeopleVaccinatedCompleteByPublishDate: '',
             latestDate: '',
-            percentVaccinated: '',
+            //percentVaccinated: '',
             percentChange: '',
             percentType: '',
             stats: {}
@@ -149,7 +149,7 @@ export default {
                 app.latestDate = response.data['stats'][0].date;
                 app.cumCasesByPublishDate = response.data.cumCasesByPublishDate;
                 app.cumDeathsByDeathDate = response.data.cumDeathsByDeathDate;
-                app.percentVaccinated = response.data.percentVaccinated;
+                //app.percentVaccinated = response.data.percentVaccinated;
                 app.cumPeopleVaccinatedCompleteByPublishDate = response.data.cumPeopleVaccinatedCompleteByPublishDate;
                 app.stats = response.data['stats'];
                 app.percentChange = app.percentDiff(response.data['stats'][0].newCasesByPublishDate, response.data['stats'][1].newCasesByPublishDate)
